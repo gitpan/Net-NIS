@@ -1,0 +1,14 @@
+README
+MANIFEST
+Makefile.PL
+NIS.pm
+NIS.pod
+NISTable.pod
+NIS.xs
+NIS/Table.pm
+t/domainname.t
+t/table.t
+t/wantarray.t
+t/ypcat.t
+t/yperr_num.t
+t/yperr_string.t
