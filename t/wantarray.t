@@ -21,8 +21,8 @@ $loaded = 1;
 my ($status, $value_array, $value_scalar);
 
 eval '($status, $value_array) = Net::NIS::yp_get_default_domain()';
-ok $@, '',     'eval yp_get_default_domain [array]';
-ok $status, 0, 'status of yp_get_default_domain [array]';
+ok $@,      '',       'eval yp_get_default_domain [array]';
+ok $status, 0+$yperr, 'status of yp_get_default_domain [array]';
 
 eval '$value_scalar = Net::NIS::yp_get_default_domain()';
 ok $@, '',     'eval yp_get_default_domain [scalar]';

@@ -2,7 +2,7 @@
 #
 # Net::NIS::Tied - interface to YP^H^HNIS
 #
-# $Id: NIS.pm,v 1.8 2002/07/20 15:39:20 esm Exp $
+# $Id: NIS.pm,v 1.9 2002/08/30 21:42:08 esm Exp $
 #
 package Net::NIS;
 
@@ -88,7 +88,7 @@ require AutoLoader;
 @EXPORT_OK   = (          '$yperr', @YPERRS   );
 @EXPORT      = (          '$yperr'            );
 
-$VERSION = '0.32';
+$VERSION = '0.33';
 
 $PKG = __PACKAGE__;		# For interpolating into error messages
 

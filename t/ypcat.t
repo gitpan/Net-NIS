@@ -20,13 +20,19 @@ BEGIN {
 
 END   { $loaded or print "not ok 1\n" }
 
-use Net::NIS;
+use Net::NIS qw($yperr YPERR_DOMAIN YPERR_NODOM YPERR_MAP);
 
 $loaded = 1;
 
 foreach my $map (@maps) {
   my %tied;
   tie %tied, 'Net::NIS', $map;
+  # Build machine could be YP-less.  We should still allow tests to pass.
+  if (grep { $yperr == $_ } (YPERR_DOMAIN, YPERR_NODOM, YPERR_MAP)) {
+      skip "skip: $yperr", "", "";
+      skip "skip: $yperr", "", "";
+      next;
+  }
   ok $yperr, "", "tie '$map'";
   next if $yperr;
 

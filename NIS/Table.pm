@@ -1,4 +1,4 @@
-# $Id: Table.pm,v 1.1.1.1 1995/11/10 09:45:03 esm Exp $
+# $Id: Table.pm,v 1.2 2002/08/07 15:33:21 esm Exp $
 
 require Net::NIS;
 
@@ -7,6 +7,7 @@ package Net::NIS::Table;
 sub new
 {
   my($pkg, $map, $domain) = @_;
+  my ($self) = {};
   $domain = Net::NIS::yp_get_default_domain() if ! $domain;
 
   $self->{'map'} = $map;

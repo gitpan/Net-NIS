@@ -24,6 +24,13 @@ my $hosts = Net::NIS::Table->new("hosts.byname");
 # Check that we got back _something_ valid
 ok ref ($hosts), "Net::NIS::Table", "ref(\$hosts)";
 
+# If YP domain is unset, skip subsequent tests
+unless ($hosts->{domain}) {
+    skip "skip: nodomain", '', '';
+    skip "skip: nodomain", '', '';
+    exit 0;
+}
+
 # Can we get a list of hosts?
 my $data;
 eval '$data = $hosts->list()';
