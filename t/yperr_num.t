@@ -17,7 +17,7 @@ my $loaded = 0;
 BEGIN { plan tests => 34; }
 END   { $loaded or print "not ok 1\n" }
 
-use Net::NIS;
+use Net::NIS qw(:all);
 
 $loaded = 1;
 
@@ -25,7 +25,7 @@ $loaded = 1;
 # function returns the value we expect to see.
 for (my $i=0; $i < @Net::NIS::YPERRS; $i++) {
   my $const = $Net::NIS::YPERRS[$i];
-  my $val = eval "Net::NIS::$const()";
+  my $val = eval "$const()";
   ok $@, "", "Evaluation of $const";
   ok eval $val, $i, $const;
 }

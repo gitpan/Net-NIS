@@ -2,7 +2,7 @@
 #
 # Net::NIS::Tied - interface to YP^H^HNIS
 #
-# $Id: NIS.pm,v 1.6 2002/03/03 22:17:25 esm Exp $
+# $Id: NIS.pm,v 1.8 2002/07/20 15:39:20 esm Exp $
 #
 package Net::NIS;
 
@@ -88,7 +88,7 @@ require AutoLoader;
 @EXPORT_OK   = (          '$yperr', @YPERRS   );
 @EXPORT      = (          '$yperr'            );
 
-$VERSION = '0.31';
+$VERSION = '0.32';
 
 $PKG = __PACKAGE__;		# For interpolating into error messages
 
@@ -125,13 +125,7 @@ sub AUTOLOAD {
 
     {
 	no strict 'refs';
-	# Fixed between 5.005_53 and 5.005_61
-	if ($] >= 5.00561) {
-	    *$AUTOLOAD = sub () { $val };
-	}
-	else {
-	    *$AUTOLOAD = sub { $val };
-	}
+	*$AUTOLOAD = sub { $val };
     }
     goto &$AUTOLOAD;
 }

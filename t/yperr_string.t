@@ -11,6 +11,10 @@ my $loaded = 0;
 use strict;
 use vars qw(@msgs);
 
+# Make sure we get English error messages, no matter the current locale
+use POSIX qw(locale_h);
+setlocale(LC_ALL, 'C');
+
 BEGIN {
   # These regular expressions have been tested under:
   #
