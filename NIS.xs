@@ -2,7 +2,7 @@
 **
 ** Filename: NIS.xs - back end for the Net::NIS package
 **
-** $Id: NIS.xs,v 1.4 2002/02/19 23:16:56 esm Exp $
+** $Id: NIS.xs,v 1.6 2003/03/19 13:55:20 esm Exp $
 */
 
 #include <sys/types.h>		/* Needed on FreeBSD */
@@ -13,6 +13,16 @@
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
+
+/*
+** The *THX_ macros seem to be 5.6 and above.
+**
+** Nobody should be running 5.005 any more, but still, it's not my place
+** to judge.  If someone wants to, let's try to let them.
+*/
+#ifndef	 pTHX_
+# define pTHX_
+#endif	/* pTHX */
 
 /*
 ** FIXME: if we ever support new YPERR_xxx values, this must be updated!
@@ -194,7 +204,7 @@ static int yp_status;
 **       or die "Could not tie $mapname: $yp_status\n"
 **
 */
-static int yp_status_get(SV *sv, MAGIC *m)
+static int yp_status_get(pTHX_ SV *sv, MAGIC *m)
 {
     /*
     ** First set the numeric value (double -- int doesn't do the right thing),
@@ -219,7 +229,7 @@ static int yp_status_get(SV *sv, MAGIC *m)
 /*
 ** This seems useful only for testing: $yperr = 0 (or something else)
 */
-static int yp_status_set(SV *sv, MAGIC *m)
+static int yp_status_set(pTHX_ SV *sv, MAGIC *m)
 {
     int new_val = SvIV(sv);
 
@@ -233,7 +243,7 @@ static int yp_status_set(SV *sv, MAGIC *m)
 }
 
 MGVTBL yp_status_accessors = {
-    yp_status_get, yp_status_set, NULL, NULL, NULL
+    yp_status_get, yp_status_set, NULL, NULL, NULL, NULL, NULL
 };
 
 

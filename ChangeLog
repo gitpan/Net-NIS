@@ -1,4 +1,16 @@
-2002-08-30  Ed Santiago  <esm@ascend.gingerbear.org>
+2003-03-19  Eduardo Santiago  <esm@pobox.com>
+
+	* NIS.xs: From Peter Eriksson <peter at ifm.liu.se>: compile and
+	work properly on perl 5.8.0 configured for threads (ithreads)
+	and 64bit integers.
+
+	* t/ypcat.t: rewrite to use arrays and 'grep { == }' instead
+	of hashes.  Fixes: https://rt.cpan.org/NoAuth/Bug.html?id=1865
+	(we now handle spaces in the map key)
+
+	* NIS.pm: version up to 0.34
+
+2002-08-30  Ed Santiago  <esm@pobox.com>
 
 	* NIS.pm: version up to 0.33
 
