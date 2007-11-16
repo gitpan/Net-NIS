@@ -72,6 +72,19 @@ B<Example>
     or die "Cannot tie to mail.aliases YP map: $yperr\n";
   print "postmaster is ", $alias{postmaster} || "<unknown>", "\n";
 
+As a special case, the magic map B<__YPMASTER> can be used as
+an equivalent to 'ypwhich -m':
+
+  tie %ypmaster, 'Net::NIS', '__YPMASTER' or die ...;
+  printf "ypmaster(passwd) = %s\n", $ypmaster{'passwd.byname'};
+
+  print  $_, "\n"    for sort keys %ypmaster;	# Only works on Linux!
+
+Note that keys() only works on Linux, because Linux includes
+a helpful yp_maplist() function.  On Linux, you can get a list
+of existing YP maps.  On other OSes, you can't -- but given
+the name of an existing map, $ypmaster{$map} will work as expected.
+
 
 =head2	NIS API Implementation
 

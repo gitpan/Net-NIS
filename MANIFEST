@@ -1,5 +1,5 @@
 README
-ChangeLog
+Changes
 MANIFEST
 Makefile.PL
 NIS.pm
@@ -7,9 +7,11 @@ NIS.pod
 NISTable.pod
 NIS.xs
 NIS/Table.pm
-t/domainname.t
-t/table.t
-t/wantarray.t
-t/ypcat.t
-t/yperr_num.t
-t/yperr_string.t
+t/01domainname.t
+t/10yperr_string.t
+t/15yperr_num.t
+t/20wantarray.t
+t/30table.t
+t/40ypmaster.t
+t/90ypcat.t
+META.yml                                 Module meta-data (added by MakeMaker)

@@ -1,4 +1,4 @@
-# $Id: Table.pm,v 1.2 2002/08/07 15:33:21 esm Exp $
+# $Id$
 
 require Net::NIS;
 

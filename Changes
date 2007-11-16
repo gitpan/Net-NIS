@@ -1,0 +1,19 @@
+Revision history for Net::NIS
+
+0.40	2007-11-16
+	- New feature: magic '__YPMASTER' map serves as interface
+	  to yp_master() function and, if available, yp_maplist().
+	  Thanks to John L. Allen at ngc.com for feature request.
+	- test suite: handle several unusual situations.
+	- test suite: disable ypcat test.  It fails in too many places.
+
+0.34	2003-03-19
+	- NIS.xs: compile and work properly on perl 5.8.0 configured for
+	  threads and 64bit integers
+	- t/ypcat.t: rewrite to use arrays instead of hashes.
+          Fixes https://rt.cpan.org/NoAuth/Bug.html?id=1865
+
+0.33	2002-08-31
+	- test suite: pass even if build host isn't running NIS
+	- NIS::Table - allow more than one concurrent object.  Bug fix
+	  provided by Andy Walker <andy at online dot no>.

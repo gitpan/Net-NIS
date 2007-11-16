@@ -2,40 +2,48 @@
 #
 # compare our results against what "ypcat -k <map>" finds
 #
-use Test;
-
-my $loaded = 0;
+# This test is DISABLED BY DEFAULT.  That's because there are a few
+# sites out there whose YP maps have keys with spaces in them.  So
+# if I run ypcat -k passwd.byname and see 'joe bob joe bob:*:123:45:...',
+# how do I parse that as a key/value pair?
+#
+# To enable this test, you can set $NET_NIS_YPCAT_TEST to any nonzero value
+#
+use Test::More;
 
 use strict;
 use vars qw(@maps);
 
 BEGIN {
-  @maps = qw(passwd.byname
-	     passwd.byuid
-	     group.byname
-	     hosts.byname
-	     mail.aliases);
-  plan tests => 2 * @maps;
+    my $envar = 'NET_NIS_YPCAT_TEST';
+    if ($ENV{$envar}) {
+	@maps = qw(passwd.byname
+		   passwd.byuid
+		   group.byname
+		   hosts.byname);
+
+	plan tests => 2 * @maps;
+    }
+    else {
+	plan tests => 1;
+	diag("This test is disabled by default. To run, set $envar=1");
+	ok 1, "All tests skipped";
+    }
 }
 
-END   { $loaded or print "not ok 1\n" }
-
 use Net::NIS qw($yperr YPERR_DOMAIN YPERR_NODOM YPERR_MAP);
-
-$loaded = 1;
 
 foreach my $map (@maps) {
     my $ok = 1;
 
+  SKIP: {
     my %tied;
     tie %tied, 'Net::NIS', $map;
     # Build machine could be YP-less.  We should still allow tests to pass.
     if (grep { $yperr == $_ } (YPERR_DOMAIN, YPERR_NODOM, YPERR_MAP)) {
-	skip "skip: $yperr", "", "";
-	skip "skip: $yperr", "", "";
-	next;
+	skip "$map: $yperr", 2;
     }
-    ok $yperr, "", "tie '$map'";
+    is $yperr, "", "tie '$map'";
     next if $yperr;
 
     # See what "ypcat -k" has to say.  Remember each key/value pair seen.
@@ -88,5 +96,6 @@ foreach my $map (@maps) {
 	warn "  : $_\n"		for @cmdline;
     }
 
-    ok $ok, 1, "\$ok";
+    is $ok, 1, "\$ok";
+  }
 }

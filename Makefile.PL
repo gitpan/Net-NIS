@@ -1,11 +1,19 @@
-# $Id: Makefile.PL,v 1.2 2002/02/19 21:03:52 esm Exp $
+# $Id$
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-	      LIBS         => '-lnsl',
-	      INC          => '',
-	      DISTNAME     => 'Net-NIS',
-	      NAME         => 'Net::NIS',
-	      PMLIBDIRS    => [ 'NIS' ],
-	      VERSION_FROM => 'NIS.pm',
+    NAME          => 'Net::NIS',
+    AUTHOR        => 'Eduardo Santiago <esm@cpan.org>',
+    VERSION_FROM  => 'NIS.pm',
+    ABSTRACT_FROM => 'NIS.pod',
+    LIBS          => '-lnsl',
+    PREREQ_PM     => { 'Test::More' => 0 },
+
+    # The PREOP condition prevents me from doing incomplete releases :-)
+    dist          => {
+        COMPRESS => 'gzip -9f',
+        SUFFIX   => 'gz',
+        PREOP    => 'fgrep  \?\? Changes && exit 1 || true',
+    },
+
 );

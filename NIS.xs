@@ -2,7 +2,7 @@
 **
 ** Filename: NIS.xs - back end for the Net::NIS package
 **
-** $Id: NIS.xs,v 1.6 2003/03/19 13:55:20 esm Exp $
+** $Id$
 */
 
 #include <sys/types.h>		/* Needed on FreeBSD */
@@ -243,7 +243,7 @@ static int yp_status_set(pTHX_ SV *sv, MAGIC *m)
 }
 
 MGVTBL yp_status_accessors = {
-    yp_status_get, yp_status_set, NULL, NULL, NULL, NULL, NULL
+    yp_status_get, yp_status_set,
 };
 
 
@@ -481,3 +481,43 @@ _yp_tie_status(sv)
 	m = mg_find(sv, '~');
 	m->mg_virtual = &yp_status_accessors;
 	SvMAGICAL_on(sv);
+
+#ifdef	__linux
+  #
+  # Returns an array of all the YP map names
+  #
+void yp_maplist(domain)
+  char *	domain
+  PREINIT:
+	int		  ret;
+	struct ypmaplist *ypmap = NULL;
+	AV		 *retval;
+  PPCODE:
+  {
+    ret = yp_maplist( domain, &ypmap );
+
+    if (ret == YPERR_SUCCESS) {
+      struct ypmaplist *y, *old;
+
+      for (y=ypmap; y;) {
+	// FIXME: check that y->map is not NULL?
+	XPUSHs(newSVpv(y->ypml_name,strlen(y->ypml_name)));
+	old = y;
+	y   = y->ypml_next;
+	free(old);
+      }
+    }
+  }
+
+
+#else	/* Linux */
+void
+yp_maplist(domain)
+    char * domain
+  PPCODE:
+  {
+    warn("Net::NIS::yp_maplist() -- not implemented on this OS");
+    XSRETURN_EMPTY;
+  }
+
+#endif
