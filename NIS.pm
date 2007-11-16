@@ -91,7 +91,7 @@ require AutoLoader;
 @EXPORT_OK   = (          '$yperr', @YPERRS   );
 @EXPORT      = (          '$yperr'            );
 
-$VERSION = '0.40';
+$VERSION = '0.41';
 
 $PKG = __PACKAGE__;		# For interpolating into error messages
 

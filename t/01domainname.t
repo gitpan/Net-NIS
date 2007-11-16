@@ -9,9 +9,15 @@ use Test::More tests => 1;
 
 use Net::NIS;
 
-# See what the 'domainname' command returns.  Note that some
-# versions return '(none)' (left-paren, none, right-paren).
-chomp(my $domainname_per_cmdline = `domainname`);
+# See what the 'domainname' command returns.  If there's an error,
+# assume that NIS just isn't installed and skip the test.
+chomp(my $domainname_per_cmdline = `domainname` || '');
+if ($?) {
+    ok 1, "Skip: 'domainname' command failed";
+    exit 0;
+}
+
+# Some versions return '(none)' (left-paren, none, right-paren).
 if ($domainname_per_cmdline eq '(none)') {
     $domainname_per_cmdline = '';
 }
