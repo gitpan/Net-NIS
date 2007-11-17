@@ -1,5 +1,8 @@
 Revision history for Net::NIS
 
+0.43	2007-11-17
+	- NIS.xs: missed one whitespace change needed for 5.005
+
 0.42	2007-11-16
 	- test suite: remove the 'table' test; the Table interface
 	  is deprecated anyway.

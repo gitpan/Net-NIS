@@ -483,10 +483,12 @@ _yp_tie_status(sv)
 	SvMAGICAL_on(sv);
 
 #ifdef	__linux
+
   #
   # Returns an array of all the YP map names
   #
-void yp_maplist(domain)
+void
+yp_maplist(domain)
   char *	domain
   PREINIT:
 	int		  ret;
@@ -511,6 +513,7 @@ void yp_maplist(domain)
 
 
 #else	/* Linux */
+
 void
 yp_maplist(domain)
     char *	domain
