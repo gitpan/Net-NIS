@@ -1,5 +1,10 @@
 Revision history for Net::NIS
 
+0.42	2007-11-16
+	- test suite: remove the 'table' test; the Table interface
+	  is deprecated anyway.
+	- NIS.xs: whitespace change for amd64 freebsd, perl 5.005
+
 0.41	2007-11-16
 	- test suite: handle another problem situation
 

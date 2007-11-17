@@ -513,7 +513,7 @@ void yp_maplist(domain)
 #else	/* Linux */
 void
 yp_maplist(domain)
-    char * domain
+    char *	domain
   PPCODE:
   {
     warn("Net::NIS::yp_maplist() -- not implemented on this OS");
