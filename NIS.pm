@@ -2,12 +2,13 @@
 #
 # Net::NIS::Tied - interface to YP^H^HNIS
 #
-# $Id$
+# $Id: 104 $
 #
 package Net::NIS;
 
 use strict;
-# use warnings;			# Sigh, only available in 5.6 and above
+use 5.006;
+use warnings;			# Sigh, only available in 5.6 and above
 use Carp;
 
 ###############################################################################
@@ -91,7 +92,7 @@ require AutoLoader;
 @EXPORT_OK   = (          '$yperr', @YPERRS   );
 @EXPORT      = (          '$yperr'            );
 
-$VERSION = '0.43';
+$VERSION = '0.44';
 
 $PKG = __PACKAGE__;		# For interpolating into error messages
 
@@ -150,7 +151,7 @@ sub _expand_nickname($) {
     # First time through?  Read the nicknames file, or initialize to a
     # reasonable default (hardcoded above).
     if (keys %nickname == 0) {
-	if (open NICKNAMES, $Nicknames_File) {
+	if (open NICKNAMES, '<', $Nicknames_File) {
 	    while (defined (my $line = <NICKNAMES>)) {
 		$line =~ /^\s*(\S+)\s+(\S+)$/
 		    or next;

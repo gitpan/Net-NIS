@@ -227,11 +227,12 @@ but I'm not sure what you can do about it...
 
 =head1 AUTHOR
 
-Copyright (c) 1995, 2002 Rik Harris (B<rik.harris@fulcrum.com.au>). All
+Copyright (c) 1995, 2002 Rik Harris (B<rik.harris@fulcrum.com.au>),
+2002-2014 Ed Santiago. All
 rights reserved.  This program is free software; you can redistribute
 it and/or modify it under the same terms as Perl itself.
 
-Net::NIS is currently maintained by Ed Santiago Muñoz <esm@pobox.com>.
+Net::NIS is currently maintained by Ed Santiago <esm@cpan.org>.
 
 The Network Information Service (NIS) was formerly known as Sun Yellow
 Pages (YP). The functionality of the two remains the same; only the

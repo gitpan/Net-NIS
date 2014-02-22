@@ -38,7 +38,7 @@ two values, this function is more efficient, as it retrieves the items
 one at a time.  If you wish to retrieve many items (where many is dependent
 on the size of the map, and probably what sort of machine you are on),
 it is better to use the L<list> interface, which uses just one RPC
-call to retreive the entire map.
+call to retrieve the entire map.
 
 =item \%data = $obj->list()
 

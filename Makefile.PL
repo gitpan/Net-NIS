@@ -1,6 +1,9 @@
 # $Id$
 use ExtUtils::MakeMaker;
 
+# It's 2007.  Time to forget about 5.005.
+use 5.006;
+
 WriteMakefile(
     NAME          => 'Net::NIS',
     AUTHOR        => 'Eduardo Santiago <esm@cpan.org>',

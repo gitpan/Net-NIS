@@ -1,5 +1,9 @@
 Revision history for Net::NIS
 
+0.44	2014-02-22
+	- require perl 5.6
+        - typo fix; modernize encoding
+
 0.43	2007-11-17
 	- NIS.xs: missed one whitespace change needed for 5.005
 

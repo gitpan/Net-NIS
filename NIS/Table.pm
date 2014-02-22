@@ -1,4 +1,4 @@
-# $Id$
+# $Id: 100 $
 
 require Net::NIS;
 

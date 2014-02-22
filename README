@@ -47,7 +47,7 @@ build on a system not running NIS, the tests will fail.
 BUGS:
 -----
 
-Net::NIS has not changed much (read "at all") in over seven years,
+Net::NIS has not changed much (read "at all") in many years,
 so I (Ed) am not about to go changing interfaces.  I have made some
 bug fixes:
 
@@ -62,17 +62,17 @@ bug fixes:
   * New tied interface
 
 There have been a lot of changes, and that means there will be
-bugs.  Please report any bugs you encounter to <esm@pobox.com>.
+bugs.  Please report any bugs you encounter to <esm@cpan.org>.
 
 have fun,
 rik.	(1995-11-10)
-Ed      (2002-02-20)
+Ed      (2014-02-22)
 
 
 COPYRIGHT AND LICENSE:
 ---------------------
 
-Copyright © 1995,2002 Rik Harris.
+Copyright Â© 1995,2002 Rik Harris; 2002-2014 Ed Santiago
 
 This package is free software; you may redistribute it and/or
 modify it under the same terms as Perl itself.
